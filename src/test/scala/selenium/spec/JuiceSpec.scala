@@ -2,6 +2,7 @@ package selenium.spec
 
 import com.dimafeng.testcontainers.GenericContainer
 import com.dimafeng.testcontainers.scalatest.TestContainerForAll
+import io.restassured.RestAssured.when
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.{By, WebDriver}
 import org.scalatest.flatspec.AnyFlatSpec
@@ -46,4 +47,13 @@ class JuiceSpec extends AnyFlatSpec with TestContainerForAll
 
       driver.findElement(By.className("close-dialog")).click
     }
+
+  it should "test the api" in withContainers { juiceShopContainer =>
+    val address: String = juiceShopContainer.containerIpAddress
+    val port: Int = juiceShopContainer.mappedPort(aPort)
+    when()
+      .get(s"http://$address:$port/rest/products/search?q=")
+      .then()
+      .statusCode(200);
+  }
 }

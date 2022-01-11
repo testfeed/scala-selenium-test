@@ -13,5 +13,6 @@ libraryDependencies += "org.scalatestplus"       %% "selenium-4-1"              
 libraryDependencies += "org.scalatest"           %% "scalatest-flatspec"              % "3.2.10" % "test"
 libraryDependencies += "org.scalatest"           %% "scalatest-shouldmatchers"        % "3.2.10" % "test"
 libraryDependencies += "org.seleniumhq.selenium" % "selenium-java"                    % "4.1.1" % "test"
+libraryDependencies += "io.rest-assured"         % "rest-assured"                     % "4.4.0"  % "test"
 
 Test / fork := true
